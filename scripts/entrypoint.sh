@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+chmod +x -R /scripts
+
 rm -rf /var/spool/cron/crontabs && mkdir -m 0644 -p /var/spool/cron/crontabs
 
 [ "$(ls -A /etc/cron.d)" ] && cp -f /etc/cron.d/* /var/spool/cron/crontabs/ || true
