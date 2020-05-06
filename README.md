@@ -1,7 +1,7 @@
 # docker-alpine-cron
 
 Dockerfile and scripts for creating image with Cron based on Alpine  
-Installed packages: dcron wget rsync ca-certificates  curl
+Installed packages: dcron bash git zip unzip tar wget rsync ca-certificates  curl
 
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
