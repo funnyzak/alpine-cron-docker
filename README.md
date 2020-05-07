@@ -6,7 +6,7 @@ Installed packages: dcron bash git zip unzip tar wget rsync ca-certificates curl
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
-This image is based on Alpine Linux image, which is a 20MB image.
+This image is based on Alpine Linux image, which is a 27MB image.
 
 Download size of this image is:
 
