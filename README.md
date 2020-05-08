@@ -16,6 +16,8 @@ Download size of this image is:
 
 Docker Pull Command: `docker pull funnyzak/alpine-cron`
 
+---
+
 ## Environment variables
 
 CRON_STRINGS - strings with cron jobs. Use "\n" for newline (Default: undefined)
@@ -24,17 +26,43 @@ CRON_TAIL - if defined cron log file will read to *stdout* by *tail* (Default: u
 
 By default cron running in foreground  
 
+---
+
+## NOTIFY
+
+You can use notifications by call "/utils.sh" in the execution script.
+
+```bash
+source /utils.sh
+
+notify_all "db backup" "start"
+```
+
+### Notify Environment variables
+
+* **NOTIFY_URL_LIST** : Optional. Notify link array , each separated by **|**
+* **IFTTT_HOOK_URL_LIST** : Optional. ifttt webhook url array , each separated by **|** [Official Site](https://ifttt.com/maker_webhooks).
+* **DINGTALK_TOKEN_LIST**: Optional. DingTalk Bot TokenList, each separated by **|** [Official Site](http://www.dingtalk.com).
+* **JISHIDA_TOKEN_LIST**: Optional. JiShiDa TokenList, each separated by **|**. [Official Site](http://push.ijingniu.cn/admin/index/).
+* **APP_NAME** : Optional. When setting notify, it is best to set.
+
+---
+
 ## Cron files
 
-- /etc/cron.d - place to mount custom crontab files  
+* /etc/cron.d - place to mount custom crontab files  
 
 When image will run, files in */etc/cron.d* will copied to */var/spool/cron/crontab*.
 
 If *CRON_STRINGS* defined script creates file */var/spool/cron/crontab/CRON_STRINGS*  
 
+---
+
 ## Log files
 
-Log file by default placed in /var/log/cron/cron.log 
+Log file by default placed in /var/log/cron/cron.log
+
+---
 
 ## Simple usage
 
@@ -45,6 +73,8 @@ docker run --name="alpine-cron-sample" -d \
 xordiv/docker-alpine-cron
 ```
 
+---
+
 ## With scripts and CRON_STRINGS
 
 ```docker
@@ -54,6 +84,8 @@ docker run --name="alpine-cron-sample" -d \
 xordiv/docker-alpine-cron
 ```
 
+---
+
 ## Get URL by cron every minute
 
 ``` docker
@@ -61,3 +93,33 @@ docker run --name="alpine-cron-sample" -d \
 -e 'CRON_STRINGS=* * * * * wget --spider https://sample.dockerhost/cron-jobs'
 xordiv/docker-alpine-cron
 ```
+
+---
+
+## Docker-compose
+
+```docker
+version: '3'
+services:
+  acron:
+    image: funnyzak/alpine-cron
+    privileged: true
+    container_name: cron
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '1g'
+    tty: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=C.UTF-8
+      - CRON_TAIL=1
+      - CRON_STRINGS=* * * * * /scripts/echo.sh
+    restart: on-failure
+    volumes:
+      - ./scripts:/scripts # execute script
+      - ./cron:/etc/cron.d # crontab
+      - ./db:/db # log
+```
+
+For more information, please see the "Demo" folder.
