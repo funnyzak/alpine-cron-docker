@@ -30,7 +30,7 @@ function notify_url_single(){
 function dingtalk_notify_single() {
     SCRIPT_NAME=$1
     ACTION_NAME=$2
-    TOKEN=$2
+    TOKEN=$3
     
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. DingTalk Notification Sending..."
     curl "https://oapi.dingtalk.com/robot/send?access_token=${TOKEN}" \
