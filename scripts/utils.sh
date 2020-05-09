@@ -93,6 +93,7 @@ function notify_run(){
 # $2 action name
 # eg: notify_all "数据库备份" "已开始" 
 function notify_all(){
+    echo "notify all run. var: $@"
     notify_run "notify_url_single" "$1" "$2" "$NOTIFY_URL_LIST"
     notify_run "dingtalk_notify_single" "$1" "$2" "$DINGTALK_TOKEN_LIST"
     notify_run "jishida_notify_single" "$1" "$2" "$JISHIDA_TOKEN_LIST"
