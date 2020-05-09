@@ -1,7 +1,7 @@
 # docker-alpine-cron
 
 Dockerfile and scripts for creating image with Cron based on Alpine  
-Installed packages: dcron bash git zip unzip bzip2 gzip tar wget rsync ca-certificates curl mysql-client
+Installed packages: dcron ca-certificates bash curl wget rsync git zip unzip gzip bzip2 tar tzdata mysql-client
 
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
