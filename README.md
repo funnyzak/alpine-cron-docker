@@ -70,7 +70,7 @@ Log file by default placed in /var/log/cron/cron.log
 docker run --name="alpine-cron-sample" -d \
 -v /path/to/app/conf/crontabs:/etc/cron.d \
 -v /path/to/app/scripts:/scripts \
-xordiv/docker-alpine-cron
+funnyzak/alpine-cron
 ```
 
 ---
@@ -81,7 +81,7 @@ xordiv/docker-alpine-cron
 docker run --name="alpine-cron-sample" -d \
 -e 'CRON_STRINGS=* * * * * /scripts/myapp-script.sh'
 -v /path/to/app/scripts:/scripts \
-xordiv/docker-alpine-cron
+funnyzak/alpine-cron
 ```
 
 ---
@@ -91,7 +91,7 @@ xordiv/docker-alpine-cron
 ``` docker
 docker run --name="alpine-cron-sample" -d \
 -e 'CRON_STRINGS=* * * * * wget --spider https://sample.dockerhost/cron-jobs'
-xordiv/docker-alpine-cron
+funnyzak/alpine-cron
 ```
 
 ---
