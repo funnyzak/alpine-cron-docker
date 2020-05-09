@@ -16,7 +16,7 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
 ENV LANG=C.UTF-8
  
 RUN apk update && apk upgrade && \
-    apk add --no-cache dcron bash curl wget rsync git zip unzip tar tzdata mysql-client && \
+    apk add --no-cache dcron bash curl wget rsync git zip unzip gzip bzip2 tar tzdata mysql-client && \
     rm  -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir -p /var/log/cron && \
