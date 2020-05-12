@@ -8,8 +8,6 @@ function notify_url_single(){
     ACTION_NAME=$2
     NOTIFY_URL=$3
 
-    echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】Web Notify Notification Sending..."
-
     # current timestamp
     CURRENT_TS=$(date +%s)
     curl "$NOTIFY_URL" \
@@ -21,7 +19,7 @@ function notify_url_single(){
                 \"_action\": \"$ACTION_NAME\"
         }"
     curl -G "$NOTIFY_URL" \
-        -d "_time=$CURRENT_TS&_name=$APP_NAME&_script=$SCRIPT_NAME&_action=$ACTION_NAME"
+        -d "_time=$CURRENT_TS&_name=$APP_NAME&_script=$SCRIPT_NAME&_action=$ACTION_NAME"  > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】Web Notify Notification Sended."
 }
@@ -32,7 +30,6 @@ function dingtalk_notify_single() {
     ACTION_NAME=$2
     TOKEN=$3
     
-    echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. DingTalk Notification Sending..."
     curl "https://oapi.dingtalk.com/robot/send?access_token=${TOKEN}" \
         -H "Content-Type: application/json" \
         -d '{
@@ -44,7 +41,7 @@ function dingtalk_notify_single() {
             "at": {
             "isAtAll": true
             }
-        }'
+        }'  > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. DingTalk Notification Sended."
 }
@@ -55,24 +52,39 @@ function jishida_notify_single() {
     ACTION_NAME=$2
     TOKEN=$3
 
-    echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. JiShiDa Notification Sending..."
     curl --location --request POST "http://push.ijingniu.cn/send" \
         --header 'Content-Type: application/x-www-form-urlencoded' \
         --data-urlencode "key=${TOKEN}" \
         --data-urlencode "head=${APP_NAME} ${SCRIPT_NAME} ${ACTION_NAME}." \
-        --data-urlencode "body=${APP_NAME} ${SCRIPT_NAME} ${ACTION_NAME}."
+        --data-urlencode "body=${APP_NAME} ${SCRIPT_NAME} ${ACTION_NAME}."  > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. JiShiDa Notification Sended."
 }
 
-function ifttt_single() {
+function ifttt_notify_single() {
     SCRIPT_NAME=$1
     ACTION_NAME=$2
     NOTIFY_URL=$3
 
-    echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】IFTTT Notify Notification Sended."
     curl -X POST -H "Content-Type: application/json" -d "{\"value1\":\"$APP_NAME\",\"value2\":\"$SCRIPT_NAME\",\"value3\":\"$ACTION_NAME\"}" "$NOTIFY_URL"
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】IFTTT Notify Notification Sended."
+}
+
+# Telegram bot notify
+function telegram_bot_notify() {
+    SCRIPT_NAME=$1
+    ACTION_NAME=$2
+    TG_BOT_SETTING=$3
+
+    telegram_set=(${TG_BOT_SETTING//###/ })
+    telegram_token=(${telegram_set[0]})
+    telegram_chat_id=(${telegram_set[1]})
+    telegram_message="$APP_NAME $SCRIPT_NAME $ACTION_NAME."
+
+	curl -s --data-urlencode "text=$telegram_message" "https://api.telegram.org/bot$telegram_token/sendMessage?chat_id=$telegram_chat_id" > /dev/null
+
+    echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. Telegram Bot Notification Sended."
+
 }
 
 # $4 url or token list
@@ -95,9 +107,10 @@ function notify_run(){
 function notify_all(){
     echo "notify all run. var: $@"
     notify_run "notify_url_single" "$1" "$2" "$NOTIFY_URL_LIST"
+    notify_run "telegram_bot_notify" "$1" "$2" "$TELEGRAM_BOT_TOKEN"
     notify_run "dingtalk_notify_single" "$1" "$2" "$DINGTALK_TOKEN_LIST"
     notify_run "jishida_notify_single" "$1" "$2" "$JISHIDA_TOKEN_LIST"
-    notify_run "ifttt_single" "$1" "$2" "$IFTTT_HOOK_URL_LIST"
+    notify_run "ifttt_notify_single" "$1" "$2" "$IFTTT_HOOK_URL_LIST"
 }
 
 # checks if branch has something pending
