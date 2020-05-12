@@ -84,7 +84,6 @@ function telegram_bot_notify() {
 	curl -s --data-urlencode "text=$telegram_message" "https://api.telegram.org/bot$telegram_token/sendMessage?chat_id=$telegram_chat_id" > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. Telegram Bot Notification Sended."
-
 }
 
 # $4 url or token list
