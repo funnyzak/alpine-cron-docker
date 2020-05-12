@@ -10,7 +10,7 @@ function notify_url_single(){
 
     # current timestamp
     CURRENT_TS=$(date +%s)
-    curl "$NOTIFY_URL" \
+    curl --speed-time 5 --speed-limit 1 "$NOTIFY_URL" \
         -H "Content-Type: application/json" \
         -d "{
                 \"_time\": \"$CURRENT_TS\",
@@ -18,7 +18,7 @@ function notify_url_single(){
                 \"_script\": \"$SCRIPT_NAME\",
                 \"_action\": \"$ACTION_NAME\"
         }"
-    curl -G "$NOTIFY_URL" \
+    curl --speed-time 5 --speed-limit 1 -G "$NOTIFY_URL" \
         -d "_time=$CURRENT_TS&_name=$APP_NAME&_script=$SCRIPT_NAME&_action=$ACTION_NAME"  > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】Web Notify Notification Sended."
@@ -30,7 +30,7 @@ function dingtalk_notify_single() {
     ACTION_NAME=$2
     TOKEN=$3
     
-    curl "https://oapi.dingtalk.com/robot/send?access_token=${TOKEN}" \
+    curl --speed-time 5 --speed-limit 1 "https://oapi.dingtalk.com/robot/send?access_token=${TOKEN}" \
         -H "Content-Type: application/json" \
         -d '{
         "msgtype": "markdown",
@@ -52,7 +52,7 @@ function jishida_notify_single() {
     ACTION_NAME=$2
     TOKEN=$3
 
-    curl --location --request POST "http://push.ijingniu.cn/send" \
+    curl --speed-time 5 --speed-limit 1 --location --request POST "http://push.ijingniu.cn/send" \
         --header 'Content-Type: application/x-www-form-urlencoded' \
         --data-urlencode "key=${TOKEN}" \
         --data-urlencode "head=${APP_NAME} ${SCRIPT_NAME} ${ACTION_NAME}." \
@@ -66,7 +66,7 @@ function ifttt_notify_single() {
     ACTION_NAME=$2
     NOTIFY_URL=$3
 
-    curl -X POST -H "Content-Type: application/json" -d "{\"value1\":\"$APP_NAME\",\"value2\":\"$SCRIPT_NAME\",\"value3\":\"$ACTION_NAME\"}" "$NOTIFY_URL"
+    curl --speed-time 5 --speed-limit 1 -X POST -H "Content-Type: application/json" -d "{\"value1\":\"$APP_NAME\",\"value2\":\"$SCRIPT_NAME\",\"value3\":\"$ACTION_NAME\"}" "$NOTIFY_URL"
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. 【$NOTIFY_URL】IFTTT Notify Notification Sended."
 }
 
@@ -81,7 +81,7 @@ function telegram_bot_notify() {
     telegram_chat_id=(${telegram_set[1]})
     telegram_message="$APP_NAME $SCRIPT_NAME $ACTION_NAME."
 
-	curl -s --data-urlencode "text=$telegram_message" "https://api.telegram.org/bot$telegram_token/sendMessage?chat_id=$telegram_chat_id" > /dev/null
+	curl --speed-time 5 --speed-limit 1 -s --data-urlencode "text=$telegram_message" "https://api.telegram.org/bot$telegram_token/sendMessage?chat_id=$telegram_chat_id" > /dev/null
 
     echo "$APP_NAME $SCRIPT_NAME $ACTION_NAME. Telegram Bot Notification Sended."
 }
