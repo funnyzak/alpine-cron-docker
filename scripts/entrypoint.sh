@@ -11,4 +11,12 @@ rm -rf /var/spool/cron/crontabs && mkdir -m 0644 -p /var/spool/cron/crontabs
 
 chmod -R 0644 /var/spool/cron/crontabs
 
+# Run Start Command
+if [ -n "$STARTUP_COMMANDS" ]; then
+  echo -e "on startup command do: ${STARTUP_COMMANDS}" 
+  (eval "$STARTUP_COMMANDS") || (echo -e "Start Up failed. Aborting;"; exit 1)
+else
+    echo -e "no startup command. skiped."
+fi
+
 exec "$@"
