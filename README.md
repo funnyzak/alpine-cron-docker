@@ -1,16 +1,18 @@
 # docker-alpine-cron
 
-Dockerfile and scripts for creating image with Cron based on Alpine  
-Installed packages: dcron ca-certificates bash curl wget rsync git zip unzip gzip bzip2 tar tzdata mysql-client
 
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
+
+
+Dockerfile and scripts for creating image with Cron based on Alpine  
+Installed packages: dcron ca-certificates bash curl wget rsync git zip unzip gzip bzip2 tar tzdata mysql-client
 
 This image is based on Alpine Linux image, which is a 70MB image.
 
 Download size of this image is:
 
-[![](https://images.microbadger.com/badges/image/funnyzak/alpine-cron.svg)](http://microbadger.com/images/funnyzak/alpine-cron)
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
 [Docker hub image: funnyzak/alpine-cron](https://hub.docker.com/r/funnyzak/alpine-cron)
 
