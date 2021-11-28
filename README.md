@@ -6,7 +6,7 @@ Installed packages: dcron ca-certificates bash curl wget rsync git zip unzip gzi
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
-This image is based on Alpine Linux image, which is a 27MB image.
+This image is based on Alpine Linux image, which is a 70MB image.
 
 Download size of this image is:
 
@@ -27,6 +27,10 @@ CRON_TAIL - if defined cron log file will read to *stdout* by *tail* (Default: u
 By default cron running in foreground  
 
 ---
+
+## Installed
+
+certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata 
 
 ## NOTIFY
 

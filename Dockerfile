@@ -16,7 +16,8 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
 ENV LANG=C.UTF-8
  
 RUN apk update && apk upgrade && \
-    apk add --no-cache dcron && \
+    apk add --no-cache dcron \
+    ca-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata && \
     rm  -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir -p /var/log/cron && \
@@ -29,3 +30,4 @@ COPY /scripts/* /
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/cmd.sh"]
+
