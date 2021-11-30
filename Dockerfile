@@ -14,11 +14,10 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.vcs-url="https://github.com/funnyzak/alpine-cron-docker" 
 
 ENV LANG=C.UTF-8
- 
+
 RUN apk update && apk upgrade && \
     apk add --no-cache dcron \
-    mysql-client mariadb-connector-c  \
-    ca-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata && \
+    ca-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata mysql-client mariadb-connector-c && \
     rm  -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir -p /var/log/cron && \
@@ -27,8 +26,12 @@ RUN mkdir -p /var/log/cron && \
     touch /var/log/cron/cron.log && \
     mkdir -m 0644 -p /etc/cron.d
 
-COPY /scripts/* /
+COPY /scripts/* /run_scripts/
+COPY /scripts/utils.sh /utils.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/cmd.sh"]
+RUN chmod +x -R /run_scripts
+RUN chmod +x -R /utils.sh
+
+ENTRYPOINT ["/run_scripts/entrypoint.sh"]
+CMD ["/run_scripts/cmd.sh"]
 
