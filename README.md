@@ -32,7 +32,7 @@ By default cron running in foreground
 
 ## Installed
 
-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata 
+certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata  mysql-client mariadb-connector-c 
 
 ## NOTIFY
 

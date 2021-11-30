@@ -17,6 +17,7 @@ ENV LANG=C.UTF-8
  
 RUN apk update && apk upgrade && \
     apk add --no-cache dcron \
+    mysql-client mariadb-connector-c  \
     ca-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata && \
     rm  -rf /tmp/* /var/cache/apk/*
 
