@@ -1,2 +1,6 @@
-test*
-*.log
+docker-compose.yml
+code
+ssh
+target
+
+demo/db
