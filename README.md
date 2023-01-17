@@ -142,7 +142,7 @@ services:
       - ./db:/db # log
 ```
 
-For more information, please see the "Demo" folder.
+For more details, please refer to the [docker-compose.yml](example/docker-compose.yml) file.
 
 ## Contribution
 
