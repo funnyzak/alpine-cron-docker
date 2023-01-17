@@ -3,28 +3,25 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
-Dockerfile and scripts for creating image with Cron based on Alpine  
-Installed packages: dcron ca-certificates bash curl wget rsync git zip unzip gzip bzip2 tar tzdata mysql-client
+A lightweight Docker image with Cron based on Alpine Linux.
 
-This image is based on Alpine Linux image, which is a 90MB image.
-
-Download size of this image is:
+Download size of this image is only:
 
 [![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
 [Docker hub image: funnyzak/alpine-cron](https://hub.docker.com/r/funnyzak/alpine-cron)
 
-Docker Pull Command: `docker pull funnyzak/alpine-cron`
+**Docker Pull Command**: `docker pull funnyzak/alpine-cron:latest`
 
 ## Environment variables
 
-CRON_STRINGS - strings with cron jobs. Use "\n" for newline (Default: undefined)
+- **CRON_STRINGS**: Strings with cron jobs. Use "\n" for newline (Default: undefined)
 
-CRON_TAIL - if defined cron log file will read to *stdout* by *tail* (Default: undefined)
+- **CRON_TAIL**: - If defined cron log file will read to *stdout* by *tail* (Default: undefined)
 
 By default cron running in foreground.
 
-## Installed packages
+## Packages
 
 The following packages are installed by default:
 
@@ -72,17 +69,19 @@ notify_all "db backup" "start"
 
 ## Cron files
 
-- /etc/cron.d - place to mount custom crontab files  
+- **/etc/cron.d** Place to mount custom crontab files  
 
 When image will run, files in */etc/cron.d* will copied to */var/spool/cron/crontab*.
 
 If *CRON_STRINGS* defined script creates file */var/spool/cron/crontab/CRON_STRINGS*  
 
-## Log files
+## Logs
 
 Log file by default placed in /var/log/cron/cron.log
 
-## Simple usage
+## Usage
+
+### Base
 
 ```bash
 docker run --name="alpine-cron-sample" -d \
@@ -91,7 +90,7 @@ docker run --name="alpine-cron-sample" -d \
 funnyzak/alpine-cron
 ```
 
-## With scripts and CRON_STRINGS
+### With scripts and CRON_STRINGS
 
 ```bash
 docker run --name="alpine-cron-sample" -d \
@@ -100,7 +99,7 @@ docker run --name="alpine-cron-sample" -d \
 funnyzak/alpine-cron
 ```
 
-## Get URL by cron every minute
+### Get URL by cron every minute
 
 ```bash
 docker run --name="alpine-cron-sample" -d \
@@ -110,7 +109,7 @@ funnyzak/alpine-cron
 
 ---
 
-## Docker-compose
+### Compose
 
 ```yaml
 version: '3'
