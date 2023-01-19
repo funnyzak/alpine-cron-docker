@@ -21,7 +21,7 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
 
 RUN apk update && apk upgrade && \
     apk add --no-cache dcron certbot \
-    ca-certificates bash curl wget rsync git gcc openssh make cmake zip unzip gzip bzip2 tar tzdata mysql-client mariadb-connector-c && \
+    ca-certificates bash curl wget rsync git gcc rclone openssh make cmake zip unzip gzip bzip2 tar tzdata mysql-client mariadb-connector-c && \
     rm  -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir -p /var/log/cron && \
