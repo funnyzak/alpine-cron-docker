@@ -42,30 +42,13 @@ The following packages are installed by default:
 - bzip2
 - tar
 - tzdata
+- nodejs
+- yarn
+- npm
+- pushoo-cli
 - mysql-client
 - mariadb-connector-c
 - ossutil64
-
-## NOTIFY
-
-You can use notifications by call "/utils.sh" in the execution script.
-
-```bash
-source /utils.sh
-
-notify_all "db backup" "start"
-```
-
-### Notify Environment variables
-
-- **NOTIFY_URL_LIST** : Optional. Notify link array , each separated by **|**
-- **TELEGRAM_BOT_TOKEN**: Optional. telegram Bot Token-chatid setting. eg: **token###chatid|token2###chatid2**. each separated by **|** [Official Site](https://core.telegram.org/api).
-- **IFTTT_HOOK_URL_LIST** : Optional. ifttt webhook url array , each separated by **|** [Official Site](https://ifttt.com/maker_webhooks).
-- **DINGTALK_TOKEN_LIST**: Optional. DingTalk Bot TokenList, each separated by **|** [Official Site](http://www.dingtalk.com).
-- **JISHIDA_TOKEN_LIST**: Optional. JiShiDa TokenList, each separated by **|**. [Official Site](http://push.ijingniu.cn/admin/index/).
-- **APP_NAME** : Optional. When setting notify, it is best to set.
-
----
 
 ## Cron files
 
@@ -79,9 +62,15 @@ If *CRON_STRINGS* defined script creates file */var/spool/cron/crontab/CRON_STRI
 
 Log file by default placed in /var/log/cron/cron.log
 
+## Notification
+
+The image already installed [pushoo-cli](https://github.com/funnyzak/pushoo-cli), you can use it to send notification. You can send notification to DingTalk, iFttt, Discord, Feishu, atri, bark, etc.
+
+More information about pushoo-cli, please refer to [pushoo-cli](https://github.com/funnyzak/pushoo-cli) and [pushoo](https://github.com/imaegoo/pushoo).
+
 ## Usage
 
-### Base
+### One Cron job
 
 ```bash
 docker run --name="alpine-cron-sample" -d \
@@ -128,12 +117,6 @@ services:
       - LANG=C.UTF-8
       - CRON_TAIL=1 # tail cron log
       - CRON_STRINGS=* * * * * /scripts/echo.sh
-      - APP_NAME=MyApp
-      - JISHIDA_TOKEN_LIST=jishidatoken
-      - NOTIFY_URL_LIST=http://link1.com/notify1|http://link2.com/notify2
-      - TELEGRAM_BOT_TOKEN=123456789:SDFW33-CbovPM2TeHFCiPUDTLy1uYmN04I###9865678987
-      - DINGTALK_TOKEN_LIST=dingtalktoken1|dingtalktoken2
-      - IFTTT_HOOK_URL_LIST=https://maker.ifttt.com/trigger/cron_notify/with/key/ifttttoken-s3Up
     restart: on-failure
     volumes:
       - ./scripts:/scripts # execute script
