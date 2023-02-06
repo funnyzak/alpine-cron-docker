@@ -1,15 +1,18 @@
 # docker-alpine-cron
 
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-cron/)
+[![Build Status][build-status-image]][build-status]
+[![Docker Stars][docker-star-image]][repository-url]
+[![Docker Pulls][docker-pull-image]][repository-url]
+[![GitHub release (latest by date)][latest-release]][repository-url]
+[![GitHub][license-image]][repository-url]
 
 A lightweight Docker image with Cron based on Alpine Linux.
 
 Download size of this image is only:
 
-[![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/alpine-cron/)
+[![Image Size][docker-image-size]][docker-hub-url]
 
-[Docker hub image: funnyzak/alpine-cron](https://hub.docker.com/r/funnyzak/alpine-cron)
+[Docker hub image: funnyzak/alpine-cron][docker-hub-url]
 
 **Docker Pull Command**: `docker pull funnyzak/alpine-cron:latest`
 
@@ -131,9 +134,19 @@ For more details, please refer to the [docker-compose.yml](example/docker-compos
 If you have any questions or suggestions, please feel free to submit an issue or pull request.
 
 <a href="https://github.com/funnyzak/vue-starter/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=funnyzak/vue-starter" />
+  <img src="https://contrib.rocks/image?repo=funnyzak/alpine-cron-docker" />
 </a>
 
 ## License
 
 MIT License © 2022 [funnyzak](https://github.com/funnyzak)
+
+[build-status-image]: https://github.com/funnyzak/alpine-cron-docker/actions/workflows/build.yml/badge.svg
+[build-status]: https://github.com/funnyzak/alpine-cron-docker/actions
+[repository-url]: https://github.com/funnyzak/alpine-cron-docker
+[license-image]: https://img.shields.io/github/license/funnyzak/alpine-cron-docker?style=flat-square&logo=github&logoColor=white&label=license
+[latest-release]: https://img.shields.io/github/v/release/funnyzak/alpine-cron-docker
+[docker-star-image]: https://img.shields.io/docker/stars/funnyzak/alpine-cron.svg?style=flat-square
+[docker-pull-image]: https://img.shields.io/docker/pulls/funnyzak/alpine-cron.svg?style=flat-square
+[docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/alpine-cron
+[docker-hub-url]: https://hub.docker.com/r/funnyzak/alpine-cron
