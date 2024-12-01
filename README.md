@@ -1,5 +1,7 @@
 # docker-alpine-cron
 
+> This repository is no longer maintained. The latest built images can be found in the [Docker Release](https://github.com/funnyzak/docker-release/tree/main/Docker/cron).
+
 [![Build Status][build-status-image]][build-status]
 [![Docker Stars][docker-star-image]][repository-url]
 [![Docker Pulls][docker-pull-image]][repository-url]
