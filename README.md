@@ -10,15 +10,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/cron/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/cron.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/cron/)
 
-A lightweight Docker image with Cron based on Alpine Linux.
-
-Download size of this image is only:
-
-[![Image Size][docker-image-size]][docker-hub-url]
-
-[Docker hub image: funnyzak/alpine-cron][docker-hub-url]
-
-**Docker Pull Command**: `docker pull funnyzak/alpine-cron:latest`
+cron is a lightweight service that runs in the background and executes scheduled tasks. It builds on the official `alpine` image and includes `dcron` as the cron service. The image is available for multiple architectures, including `linux/386`, `linux/amd64`, `linux/arm/v6`, `linux/arm/v7`, `linux/arm64/v8`, `linux/ppc64le`, `linux/riscv64`, `linux/s390x`.
 
 ## Environment variables
 
